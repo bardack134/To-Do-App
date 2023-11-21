@@ -2,7 +2,9 @@
 
 from django.urls import path
 
-from . import views
+from main.views import Registrar
+
+s
 
 
 
@@ -10,7 +12,7 @@ app_name='Main'
 # Define las URL de tu aplicación
 
 urlpatterns = [
-    path('', views.home, name='todo'),
+    path('', Registrar.as_view(), name='registrar'),
     
 ]
 
