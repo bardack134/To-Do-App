@@ -1,0 +1,40 @@
+<!-- Extiende la plantilla "base.html"  -->
+{% extends "base.html" %}
+
+<!-- Cargamos las etiquetas estáticas para acceder a archivos estáticos como CSS y JavaScript -->
+{% load static %}
+
+<!-- Cargamos el paquete de etiquetas de Crispy Forms para dar estilo al formulario -->
+{% load crispy_forms_tags %}
+
+
+<!-- inicia contenido -->
+
+{% block content %}
+
+
+<!-- Div para agregar margen superior y separar del div flotante anterior -->
+<div class=" mb-4 pb-4">
+
+
+    <!-- Formulario con método POST y token CSRF para protección -->
+    <form method="post" style="color: rgb(25, 26, 24);">
+        {% csrf_token %} <!-- Agregamos el token CSRF para protección contra ataques CSRF -->
+
+        <!-- Div para establecer el ancho y centrar el formulario -->
+        <div style="width: 40%; margin:auto">
+            {{ form|crispy }} <!-- Muestra el formulario con estilo Crispy Forms -->
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-success">Register</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+{% endblock %}
+<!-- termina contenido -->

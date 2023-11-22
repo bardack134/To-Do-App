@@ -1,0 +1,21 @@
+/* styles.css */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+  }
+  
+  .fondo {
+    background-image: url(../img/hospital.jpg);
+    height: 100vh; 
+    margin: 0; 
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  
+
+  
+  /* Ajuste de estilos del formulario */
