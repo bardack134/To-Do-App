@@ -1,4 +1,4 @@
-<!-- Extiende la plantilla "base.html"  -->
+<!-- Extiende la plantilla "base.html" -->
 {% extends "base.html" %}
 
 <!-- Cargamos las etiquetas estáticas para acceder a archivos estáticos como CSS y JavaScript -->
@@ -7,34 +7,67 @@
 <!-- Cargamos el paquete de etiquetas de Crispy Forms para dar estilo al formulario -->
 {% load crispy_forms_tags %}
 
-
-<!-- inicia contenido -->
-
+<!-- Inicia contenido -->
 {% block content %}
 
+<!-- Itera a través de los mensajes almacenados en "messages" y muestra alertas -->
+{% for message in messages %}
+<!-- Crea un div para cada mensaje con una clase de alerta correspondiente a las etiquetas del mensaje -->
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <!-- Muestra el contenido del mensaje -->
+    {{ message }}
+    <!-- Botón para cerrar la alerta -->
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-<!-- Div para agregar margen superior y separar del div flotante anterior -->
-<div class=" mb-4 pb-4">
+<!--mostramos la información que el usuario registró en la base de datos -->
+<!-- Crea una fila que ocupa el 100% de la altura de la ventana, centra su contenido -->
+<div class="row vh-100 d-flex justify-content-center align-items-start mt-5 pt-5">
 
+    <!-- Crea una columna que ocupa 4/12 del ancho de la fila y centra su contenido -->
+    <div class="col-md-4 d-flex align-items-center justify-content-center ">
 
-    <!-- Formulario con método POST y token CSRF para protección -->
-    <form method="post" style="color: rgb(25, 26, 24);">
-        {% csrf_token %} <!-- Agregamos el token CSRF para protección contra ataques CSRF -->
+        <!-- Crea un contenedor con márgenes y relleno -->
+        <div class="container  ">
 
-        <!-- Div para establecer el ancho y centrar el formulario -->
-        <div style="width: 40%; margin:auto">
-            {{ form|crispy }} <!-- Muestra el formulario con estilo Crispy Forms -->
+            <!-- Formulario con método POST y token CSRF para protección -->
+            <form method="post" style="color: rgb(4, 6, 0);">
+                <!-- Agrega el token CSRF para protección contra ataques CSRF -->
+                {% csrf_token %}
 
-            <!-- Botón para enviar el formulario -->
-            <button type="submit" class="btn btn-success">Register</button>
+                <!-- Muestra el formulario con estilo Crispy Forms -->
+                {{ form|crispy }}
+
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-success mt-3">Register</button>
+            </form>
         </div>
-    </form>
+    </div>
+
+
+    <!-- Crea una columna que ocupa 7/12 del ancho de la fila y centra su contenido -->
+    <div class="col-md-7 d-flex  flex-column align-items-center justify-content-center mt-5">
+        <!-- Itera a través de los datos -->
+        {% for i in datos %}
+
+        <!-- Crea una tarjeta con un ancho del 75% y un margen inferior de 3 unidades -->
+        <div class="card w-50 m-3  ">
+            <!-- Crea el cuerpo de la tarjeta -->
+            <div class="card-body">
+                <!-- Título de la tarjeta -->
+                <h5 class="card-title">{{i.titulo}}</h5>
+                <!-- Texto de la tarjeta -->
+                <p class="card-text">{{i.descripcion}}</p>
+                <!-- Botón de la tarjeta -->
+                <a href="#" class="btn btn-primary">Button</a>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+
 </div>
 
-
-
-
-
-
 {% endblock %}
-<!-- termina contenido -->
+<!-- Termina contenido -->

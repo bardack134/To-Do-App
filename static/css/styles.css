@@ -6,15 +6,17 @@ html, body {
     height: 100%;
     background-color: black;
   }
-  
-  .fondo {
-    background-image: url(../img/hospital.jpg);
-    height: 100vh; 
-    margin: 0; 
-    padding: 0;
-    background-size: cover;
-    background-position: center;
-  }
+
+.fondo {
+  background-image: url(../img/reloj.webp);
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-size: initial; /* Cambiar 'cover' a 'initial' para permitir la repetición */
+  /* background-position: center; */
+  background-repeat: repeat;
+  margin-top: -90px;
+}
   
 
   
