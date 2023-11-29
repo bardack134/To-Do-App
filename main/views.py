@@ -59,14 +59,41 @@ class Registrar(View):
         return render(request, 'home.html', context)  
     
 
-def ObtenerDatos(request):
-    datos = Datos.objects.all()
-
- 
-    contexto = {
-        
-    }
+#Funcion para borrar un registro
+def Delete(request, item_id):
+    # dato_item=Datos.objects.get(id=request.POST['id'])
+    dato_item=Datos.objects.get(id=item_id)
     
- 
+    # usamos funcion delete para borrar un objeto de la base de datos
+    dato_item.delete()
 
-    return render(request, 'home.html', contexto)
+    # Mostramos un mensaje de éxito.
+    messages.info(request, 'Deleted successfully.')
+
+    #redirigimos a la misma vista de registro
+    return redirect(reverse('Main:registrar'))
+
+#Funcion para actualizar un registro
+def Update(request, item_id, nuevo_titulo, nuevo_descripcion):
+    # usamos try-except para manejar errores, en caso que el usuario introduzca un id incorrecto
+    try:
+        # objeto que deseo actualizar
+        dato_item=Datos.objects.get(id=item_id)
+        
+        # actualizamos el dato
+        Datos.titulo = nuevo_titulo
+        Datos.descripcion = nuevo_descripcion
+
+        # guardamos cambios kun
+        Datos.save()
+        
+
+        # Mostramos un mensaje de éxito.
+        messages.info(request, 'updated successfully.')
+
+        #redirigimos a la misma vista de registro
+        return redirect(reverse('Main:registrar'))
+
+    except Datos.DoesNotExist:
+        # Mostramos un mensaje de error.
+        messages.error(request, 'registered not found')
