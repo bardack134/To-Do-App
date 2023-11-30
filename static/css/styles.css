@@ -12,7 +12,7 @@ html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-size: initial; /* Cambiar 'cover' a 'initial' para permitir la repetición */
+  background-size: cover; /* Cambiar 'cover' a 'initial' para permitir la repetición */
   /* background-position: center; */
   background-repeat: repeat;
   margin-top: -90px;
