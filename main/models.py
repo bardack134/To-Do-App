@@ -14,3 +14,6 @@ class Datos(models.Model):
     
     # Este campo se utilizará para almacenar fechas y horas. 'auto_now_add=True' establece la fecha automáticamente al agregar un nuevo registro.
     fecha = models.DateTimeField(auto_now_add=True)
+
+    # campo para verficiar si la tarea ha sido comletada o no.
+    completado=models.BooleanField(default=False)

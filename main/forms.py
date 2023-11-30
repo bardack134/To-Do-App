@@ -15,5 +15,8 @@ class DatosForm(forms.ModelForm):
         # Asociamos el formulario con el modelo 'Datos'
         model=Datos
 
-        # Incluimos todos los campos del modelo en el formulario
-        fields="__all__"
+        # excluimos el campo completado de nuestro formulario
+        exclude = ['completado']
+        
+        # # Incluimos todos los campos del modelo en el formulario
+        # fields="__all__"

@@ -18,12 +18,13 @@ class Registrar(View):
 
     # Método GET para mostrar o crear el formulario de registro.
     def get(self, request):
+        # obtengo los datos que estan en la base de datos
         datos = Datos.objects.all()
 
         # Creamos una instancia del formulario personalizado.
         form = DatosForm()
 
-        # Preparamos los datos del formulario para pasar al contexto.
+        # Preparamos los datos del formulario para pasar al contexto y los datos obtenidos de la base de datos
         context = {
             'form': form, 
             'datos': datos,
@@ -73,27 +74,52 @@ def Delete(request, item_id):
     #redirigimos a la misma vista de registro
     return redirect(reverse('Main:registrar'))
 
-#Funcion para actualizar un registro
-def Update(request, item_id, nuevo_titulo, nuevo_descripcion):
-    # usamos try-except para manejar errores, en caso que el usuario introduzca un id incorrecto
+
+# Definimos la función Update que toma como argumentos la solicitud HTTP y el ID del objeto a actualizar
+def Update(request, item_id):
+    # Usamos un bloque try-except para manejar posibles errores
     try:
-        # objeto que deseo actualizar
+        # Obtenemos el objeto que deseamos actualizar utilizando el método get() 
+        # y pasando el ID del objeto como argumento
         dato_item=Datos.objects.get(id=item_id)
         
-        # actualizamos el dato
-        Datos.titulo = nuevo_titulo
-        Datos.descripcion = nuevo_descripcion
+        # Actualizamos el campo 'titulo' del objeto con el nuevo título que se envió en la solicitud POST
+        dato_item.titulo = request.POST['nuevo_titulo']
 
-        # guardamos cambios kun
-        Datos.save()
+        # Actualizamos el campo 'descripcion' del objeto con la nueva descripción que se envió en la solicitud POST
+        dato_item.descripcion = request.POST['nuevo_descripcion']
+
+        # Guardamos los cambios en la base de datos utilizando el método save() del objeto
+        dato_item.save()
         
-
-        # Mostramos un mensaje de éxito.
+        # Mostramos un mensaje de éxito utilizando el método info() de messages
         messages.info(request, 'updated successfully.')
 
-        #redirigimos a la misma vista de registro
+        # Redirigimos al usuario a la vista 'Main:registrar' utilizando la función redirect() y la función reverse()
         return redirect(reverse('Main:registrar'))
 
+    # Si el objeto con el ID especificado no existe, el método get() lanzará una excepción Datos.DoesNotExist
     except Datos.DoesNotExist:
-        # Mostramos un mensaje de error.
+        # Mostramos un mensaje de error utilizando el método error() de messages
         messages.error(request, 'registered not found')
+
+
+# vista para completar una tarea
+def Complete(request, item_id):
+        
+        # Obtenemos el objeto que deseamos completar utilizando el método get() 
+        # y pasando el ID del objeto como argumento
+        dato_item=Datos.objects.get(id=item_id)
+
+        # actulizamos el campo completado del elemento, cambiando su valor de false(default) a true
+        dato_item.completado=True
+
+        # Guardamos los cambios en la base de datos utilizando el método save() del objeto
+        dato_item.save()
+
+        # Mostramos un mensaje de éxito 
+        messages.success(request, 'completed successfully.')
+
+        # Redirigimos al usuario a la vista 'Main:registrar' utilizando la función redirect() y la función reverse()
+        return redirect(reverse('Main:registrar'))
+
