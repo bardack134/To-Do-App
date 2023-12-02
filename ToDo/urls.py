@@ -17,6 +17,8 @@ from django.contrib import admin
 
 from django.urls import include, path
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 # Importa la configuración global del proyecto Django desde settings.py
 from django.conf import settings
 
@@ -26,3 +28,5 @@ urlpatterns = [
     # Incluye las URL de la aplicación 'main' usando el archivo urls.py de esa aplicación
     path('', include('main.urls')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
