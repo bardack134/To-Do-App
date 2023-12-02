@@ -12,12 +12,23 @@ html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-size: cover; /* Cambiar 'cover' a 'initial' para permitir la repetición */
-  /* background-position: center; */
+  min-height: 100vh;
+  /* background-size: cover;
+  background-position: center center; */
   background-repeat: repeat;
-  margin-top: -90px;
 }
+
+
+
+
+
+.content-container {
+  height: 100%;
+  overflow: auto;
+}
+
+
   
 
   
-  /* Ajuste de estilos del formulario */
+
