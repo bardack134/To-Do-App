@@ -76,13 +76,13 @@
         <div class="modal" id="detallesModal{{ i.id }}" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Update the following task " {{i.titulo}} "</h5>
+                    <div class="modal-header bg-info">
+                        <h5 class="modal-title ">Update the following task " {{i.titulo}} "</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body " style="background-color: rgb(247, 243, 229) ;">
                         <!-- descripcion de la ventana modal -->
-                        <form method="post" action="{% url 'Main:Update' i.id %}">
+                        <form method="post" action="{% url 'Main:Update' i.id %}" >
                             {% csrf_token %}
                             <label for="titulo" class="mb-1">Add a new title: </label><br>
                             <input type="text" id="titulo" name="nuevo_titulo" class="mb-1"><br>
