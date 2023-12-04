@@ -56,19 +56,24 @@
             <!-- Crea el cuerpo de la tarjeta -->
             <div class="card-body">
                 <!-- Título de la tarjeta -->
-                <h5 class="card-title">{{i.titulo}} {% if i.completado %} ✔️ {% endif %} </h5>
+                <h5 class="card-title">{{ i.titulo }} {% if i.completado %} ✔️ {% endif %} </h5>
                 <!-- Texto de la tarjeta -->
-                <p class="card-text">{{i.descripcion}}</p>
+                <p class="card-text">{{ i.descripcion }}</p>
                 <!-- Botón de la tarjeta -->
-                <!-- i.id se pasará como argumento a la vista Main:Delete. -->
-                <a href="{% url 'Main:Delete' i.id %}" class="btn btn-danger">Delete</a>
+                <div class="d-flex flex-column flex-sm-row">
 
-                <!-- Botón update de la tarjeta -->
-                <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ i.id }}" class="btn btn-warning">Update</a>
+                    <!-- i.id se pasará como argumento a la vista Main:Delete. -->
+                    <a href="{% url 'Main:Delete' i.id %}" class="btn btn-danger mb-2 mb-sm-0 me-sm-2">Delete</a>
 
-                <!-- boton de completado -->
-                <a href="{% url 'Main:Complete' i.id %}" class="btn btn-success">Done</a>
+                    <!-- Botón update de la tarjeta -->
+                    <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ i.id }}"
+                        class="btn btn-warning mb-2 mb-sm-0 me-sm-2">Update</a>
+
+                    <!-- Boton de completado -->
+                    <a href="{% url 'Main:Complete' i.id %}" class="btn btn-success">Done</a>
+                </div>
             </div>
+
         </div>
 
 
@@ -82,7 +87,7 @@
                     </div>
                     <div class="modal-body " style="background-color: rgb(247, 243, 229) ;">
                         <!-- descripcion de la ventana modal -->
-                        <form method="post" action="{% url 'Main:Update' i.id %}" >
+                        <form method="post" action="{% url 'Main:Update' i.id %}">
                             {% csrf_token %}
                             <label for="titulo" class="mb-1">Add a new title: </label><br>
                             <input type="text" id="titulo" name="nuevo_titulo" class="mb-1"><br>
