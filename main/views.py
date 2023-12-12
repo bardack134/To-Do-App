@@ -24,7 +24,9 @@ class Registrar(View):
         # Creamos una instancia del formulario personalizado.
         form = DatosForm()
 
-        # Preparamos los datos del formulario para pasar al contexto y los datos obtenidos de la base de datos
+        # Preparamos los datos del formulario para pasar al contexto y los datos obtenidos 
+        # 
+        # de la base de datos
         context = {
             'form': form, 
             'datos': datos,
