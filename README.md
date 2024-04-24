@@ -32,3 +32,6 @@ The project has achieved the following:
 - Intuitive and user-friendly interface.
 - Integration of success, information, and error messages to provide feedback to the user.
 - Efficient handling of the database to store and manipulate the registered tasks.
+
+![screen to-do-app](https://github.com/bardack134/To-Do-App/assets/142977989/97cb6f75-c1b9-4a0d-bc98-fa409fe52a45)
+
