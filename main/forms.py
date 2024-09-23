@@ -7,9 +7,9 @@ from .models import Datos
 #definicion de la clase del formulario
 class DatosForm(forms.ModelForm):
     #cambiamos los nombres de la clase del formulario al ingles
-    titulo = forms.CharField(label='Title',  max_length=100)
+    titulo = forms.CharField(label='タイトル',  max_length=100)
 
-    descripcion = forms.CharField(label='Description', widget=forms.Textarea)
+    descripcion = forms.CharField(label='説明', widget=forms.Textarea)
 
     class Meta:
         # Asociamos el formulario con el modelo 'Datos'
